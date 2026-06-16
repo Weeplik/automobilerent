@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог автомобилей - AutoRent</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div>
+                <div>AutoRent</div>
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="cars.html">Каталог авто</a></li>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div>
+            <h1>Каталог автомобилей</h1>
+            <div>
+                <input type="text" id="searchInput" placeholder="Поиск...">
+                <select id="sortSelect">
+                    <option value="">Сортировка</option>
+                    <option value="price-asc">По цене ↑</option>
+                    <option value="price-desc">По цене ↓</option>
+                    <option value="name-asc">По названию A-Z</option>
+                    <option value="name-desc">По названию Z-A</option>
+                </select>
+            </div>
+            <div>Найдено: <span id="resultCount">12</span></div>
+            <div id="carsList"></div>
+            <div>
+                <button id="prevBtn">← Назад</button>
+                <button id="nextBtn">Вперед →</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 AutoRent. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script id="carsData">
+        const carsData = [
+            {
+                id: 1,
+                brand: "Toyota",
+                model: "Camry",
+                year: 2024,
+                seats: 5,
+                transmission: "Автомат",
+                price: 3500,
+                image: "https://via.placeholder.com/300x200?text=Toyota+Camry",
+                features: ["Кондиционер", "Круиз-контроль", "Парктроник"]
+            },
+            {
+                id: 2,
+                brand: "BMW",
+                model: "X5",
+                year: 2023,
+                seats: 7,
+                transmission: "Автомат",
+                price: 6500,
+                image: "https://via.placeholder.com/300x200?text=BMW+X5",
+                features: ["Панорамная крыша", "Кожаный салон", "Паркинг"]
+            },
+            {
+                id: 3,
+                brand: "Mercedes",
+                model: "C-Class",
+                year: 2024,
+                seats: 5,
+                transmission: "Автомат",
+                price: 5200,
+                image: "https://via.placeholder.com/300x200?text=Mercedes+C-Class",
+                features: ["Кожаный салон", "Панорамная крыша", "Навигация"]
+            },
+            {
+                id: 4,
+                brand: "Honda",
+                model: "Civic",
+                year: 2023,
+                seats: 5,
+                transmission: "Механика",
+                price: 2800,
+                image: "https://via.placeholder.com/300x200?text=Honda+Civic",
+                features: ["Кондиционер", "Аудиосистема", "Круиз-контроль"]
+            },
+            {
+                id: 5,
+                brand: "Volkswagen",
+                model: "Passat",
+                year: 2024,
+                seats: 5,
+                transmission: "Автомат",
+                price: 3800,
+                image: "https://via.placeholder.com/300x200?text=VW+Passat",
+                features: ["Дверной доступ", "Климат-контроль", "Круиз-контроль"]
+            },
+            {
+                id: 6,
+                brand: "Audi",
+                model: "A4",
+                year: 2023,
+                seats: 5,
+                transmission: "Автомат",
+                price: 4500,
+                image: "https://via.placeholder.com/300x200?text=Audi+A4",
+                features: ["Кожаный салон", "Паркинг", "Навигация"]
+            },
+            {
+                id: 7,
+                brand: "Hyundai",
+                model: "Elantra",
+                year: 2024,
+                seats: 5,
+                transmission: "Автомат",
+                price: 2500,
+                image: "https://via.placeholder.com/300x200?text=Hyundai+Elantra",
+                features: ["Кондиционер", "Аудиосистема", "Центральный замок"]
+            },
+            {
+                id: 8,
+                brand: "Kia",
+                model: "Sorento",
+                year: 2023,
+                seats: 7,
+                transmission: "Автомат",
+                price: 4200,
+                image: "https://via.placeholder.com/300x200?text=Kia+Sorento",
+                features: ["Панорамная крыша", "Климат-контроль", "Паркинг"]
+            },
+            {
+                id: 9,
+                brand: "Ford",
+                model: "Focus",
+                year: 2024,
+                seats: 5,
+                transmission: "Механика",
+                price: 2300,
+                image: "https://via.placeholder.com/300x200?text=Ford+Focus",
+                features: ["Кондиционер", "Круиз-контроль", "Центральный замок"]
+            },
+            {
+                id: 10,
+                brand: "Mazda",
+                model: "CX-5",
+                year: 2023,
+                seats: 5,
+                transmission: "Автомат",
+                price: 3900,
+                image: "https://via.placeholder.com/300x200?text=Mazda+CX-5",
+                features: ["Панорамная крыша", "Паркинг", "Навигация"]
+            },
+            {
+                id: 11,
+                brand: "Skoda",
+                model: "Octavia",
+                year: 2024,
+                seats: 5,
+                transmission: "Автомат",
+                price: 3200,
+                image: "https://via.placeholder.com/300x200?text=Skoda+Octavia",
+                features: ["Кондиционер", "Климат-контроль", "Круиз-контроль"]
+            },
+            {
+                id: 12,
+                brand: "Peugeot",
+                model: "3008",
+                year: 2023,
+                seats: 5,
+                transmission: "Автомат",
+                price: 4000,
+                image: "https://via.placeholder.com/300x200?text=Peugeot+3008",
+                features: ["Панорамная крыша", "Кожаный салон", "Навигация"]
+            }
+        ];
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>
