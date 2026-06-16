@@ -26,13 +26,15 @@
 
             <div>
                 <h2>Галерея</h2>
-                <img src="https://via.placeholder.com/500x400?text=Toyota+Camry" alt="Toyota Camry" width="100%">
-                <div>
-                    <img src="https://via.placeholder.com/100x80?text=Camry+Front" alt="Camry front">
-                    <img src="https://via.placeholder.com/100x80?text=Camry+Side" alt="Camry side">
-                    <img src="https://via.placeholder.com/100x80?text=Camry+Interior" alt="Camry interior">
-                    <img src="https://via.placeholder.com/100x80?text=Camry+Back" alt="Camry back">
+                <div id="galleryThumbs">
+                    <img class="thumbnail" src="images/toyota_camry_1.jpg" data-large="images/toyota_camry_1.jpg" alt="Toyota Camry 1" style="width:50%;cursor:pointer;display:block;margin-bottom:0.5rem;">
+                    <img class="thumbnail" src="images/toyota_camry_2.jpg" data-large="images/toyota_camry_2.jpg" alt="Toyota Camry 2" style="width:50%;cursor:pointer;display:block;margin-bottom:0.5rem;">
+                    <img class="thumbnail" src="images/toyota_camry_3.jpg" data-large="images/toyota_camry_3.jpg" alt="Toyota Camry 3" style="width:50%;cursor:pointer;display:block;margin-bottom:0.5rem;">
+                    <img class="thumbnail" src="images/toyota_camry_4.jpg" data-large="images/toyota_camry_4.jpg" alt="Toyota Camry 4" style="width:50%;cursor:pointer;display:block;margin-bottom:0.5rem;">
                 </div>
+            </div>
+            <div id="imageOverlay" style="position:fixed;inset:0;display:none;justify-content:center;align-items:center;background:rgba(0,0,0,0.9);z-index:1000;">
+                <img id="overlayImage" src="" alt="Preview" style="max-width:100%;max-height:100%;width:100%;height:auto;">
             </div>
 
             <div>
@@ -109,79 +111,60 @@
             <div class="reviews">
                 <h2>Отзывы клиентов</h2>
 
-                <div class="review">
-                    <div class="review-header">
-                        <div>
-                            <div class="review-name">Иван Петров</div>
-                            <div class="review-date">15 июня 2026</div>
+                <div id="reviewsList">
+                    <div class="review">
+                        <div class="review-header">
+                            <div>
+                                <div class="review-name">Иван Петров</div>
+                                <div class="review-date">15 июня 2026</div>
+                            </div>
+                            <div class="review-rating">★★★★★</div>
                         </div>
-                        <div class="review-rating">★★★★★</div>
+                        <p class="review-text">
+                            Отличный автомобиль! Очень комфортный салон, плавная коробка передач. 
+                            Машина в идеальном состоянии. Компания предоставила автомобиль вовремя и без проблем. 
+                            Спасибо большое за сервис!
+                        </p>
                     </div>
-                    <p class="review-text">
-                        Отличный автомобиль! Очень комфортный салон, плавная коробка передач. 
-                        Машина в идеальном состоянии. Компания предоставила автомобиль вовремя и без проблем. 
-                        Спасибо большое за сервис!
-                    </p>
+
+                    <div class="review">
+                        <div class="review-header">
+                            <div>
+                                <div class="review-name">Анна Смирнова</div>
+                                <div class="review-date">14 июня 2026</div>
+                            </div>
+                            <div class="review-rating">★★★★☆</div>
+                        </div>
+                        <p class="review-text">
+                            Хороший выбор для путешествия по России. Расходует топливо немного больше, чем ожидалось, 
+                            но в целом остались довольны. Машина едет хорошо, кондиционер работает отлично. 
+                            Рекомендую!
+                        </p>
+                    </div>
                 </div>
 
-                <div class="review">
-                    <div class="review-header">
-                        <div>
-                            <div class="review-name">Анна Смирнова</div>
-                            <div class="review-date">14 июня 2026</div>
-                        </div>
-                        <div class="review-rating">★★★★☆</div>
+                <form id="reviewForm">
+                    <h3>Оставить отзыв</h3>
+                    <div>
+                        <label for="reviewName">Имя:</label><br>
+                        <input type="text" id="reviewName" name="reviewName" required>
                     </div>
-                    <p class="review-text">
-                        Хороший выбор для путешествия по России. Расходует топливо немного больше, чем ожидалось, 
-                        но в целом остались довольны. Машина едет хорошо, кондиционер работает отлично. 
-                        Рекомендую!
-                    </p>
-                </div>
-
-                <div class="review">
-                    <div class="review-header">
-                        <div>
-                            <div class="review-name">Сергей Коваленко</div>
-                            <div class="review-date">13 июня 2026</div>
-                        </div>
-                        <div class="review-rating">★★★★★</div>
+                    <div>
+                        <label for="reviewText">Отзыв:</label><br>
+                        <textarea id="reviewText" name="reviewText" rows="4" required></textarea>
                     </div>
-                    <p class="review-text">
-                        Проехали 1200 км за выходные. Машина ведет себя идеально. Удобные сиденья, 
-                        хорошая шумоизоляция. Спидометр достоверный. Очень доволен выбором. 
-                        Обязательно буду обращаться еще!
-                    </p>
-                </div>
-
-                <div class="review">
-                    <div class="review-header">
-                        <div>
-                            <div class="review-name">Мария Кузнецова</div>
-                            <div class="review-date">12 июня 2026</div>
-                        </div>
-                        <div class="review-rating">★★★★★</div>
+                    <div>
+                        <label for="reviewRating">Оценка:</label><br>
+                        <select id="reviewRating" name="reviewRating" required>
+                            <option value="5">★★★★★</option>
+                            <option value="4">★★★★☆</option>
+                            <option value="3">★★★☆☆</option>
+                            <option value="2">★★☆☆☆</option>
+                            <option value="1">★☆☆☆☆</option>
+                        </select>
                     </div>
-                    <p class="review-text">
-                        Прекрасная машина для деловых встреч. Выглядит презентабельно, удобная для работы. 
-                        Wi-Fi и навигация работают без проблем. Сервис компании на высочайшем уровне. 
-                        Спасибо за качество!
-                    </p>
-                </div>
-
-                <div class="review">
-                    <div class="review-header">
-                        <div>
-                            <div class="review-name">Алексей Федоров</div>
-                            <div class="review-date">11 июня 2026</div>
-                        </div>
-                        <div class="review-rating">★★★★☆</div>
-                    </div>
-                    <p class="review-text">
-                        Хороший седан, все работает как надо. Единственный минус - немного высокая стоимость в день. 
-                        Но качество оправдывает цену. Буду рекомендовать друзьям.
-                    </p>
-                </div>
+                    <button type="submit">Добавить отзыв</button>
+                </form>
             </div>
         </div>
     </main>
@@ -191,5 +174,7 @@
             <p>&copy; 2026 AutoRent. Все права защищены.</p>
         </div>
     </footer>
+
+    <script src="script-car-detail.js"></script>
 </body>
 </html>

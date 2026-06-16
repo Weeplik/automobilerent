@@ -60,9 +60,11 @@ function show() {
     
     let h = '';
     list.forEach(car => {
+        const isCamry = car.brand === 'Toyota' && car.model === 'Camry';
+        const detailUrl = isCamry ? 'car-detail.html' : '#';
         h += `<div class="car-card">
-            <img src="${car.image}">
-            <h3>${car.brand} ${car.model}</h3>
+            <a href="${detailUrl}"><img src="${car.image}" alt="${car.brand} ${car.model}"></a>
+            <h3><a href="${detailUrl}">${car.brand} ${car.model}</a></h3>
             <p>Год: ${car.year} | Мест: ${car.seats}</p>
             <p class="price">${car.price} ₽/день</p>
             <button onclick="book(${car.id})">Забронировать</button>
